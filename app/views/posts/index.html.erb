@@ -2,25 +2,27 @@
 
 <table>
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>User</th>
+    <th colspan="3"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @posts.each do |post| %>
+  <% @posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
         <td><%= post.description %></td>
         <td><%= post.user %></td>
         <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if is_my_post?(post) %>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
-    <% end %>
+  <% end %>
   </tbody>
 </table>
 
