@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
 
+
   devise_for :users
   resources :posts
+
+  mount RailsAdmin::Engine => '/user/god', as: 'rails_admin'
 
   root 'posts#index'
 
